@@ -30,6 +30,7 @@
 	"dependencies": {
 		"@trpc/client": "^10.45.2",
 		"@trpc/server": "^10.45.2",
+		"delay": "^6.0.0",
 		"trpc-sveltekit": "^3.6.2"
 	}
 }
