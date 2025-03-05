@@ -1,15 +1,12 @@
-import { initTRPC } from "@trpc/server";
-import type { Context } from "$lib/trpc/context";
-import { db } from "$lib/db/db";
+import { t } from "$lib/trpc/trpc";
+import { router } from "$lib/trpc/trpc";
+// routers
+import { userRouter } from "$lib/trpc/routes/userRouter";
 
-export const t = initTRPC.context<Context>().create();
-
-export const router = t.router({
-  getUser: t.procedure.query(async () => {
-    return await db.selectFrom("user").selectAll().execute();
-  }),
+export const mainRouter = router({
+  user: userRouter,
 });
 
-export const createCaller = t.createCallerFactory(router);
+export const createCaller = t.createCallerFactory(mainRouter);
 
-export type Router = typeof router;
+export type Router = typeof mainRouter;
