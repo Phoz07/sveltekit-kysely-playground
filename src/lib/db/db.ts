@@ -1,11 +1,13 @@
 import { Kysely, PostgresDialect } from "kysely";
-import { Pool } from "pg";
+import pkg from "pg";
+const { Pool } = pkg;
 import type { DB } from "./schema";
+import { DATABASE_URL } from "$env/static/private";
 
 export const db = new Kysely<DB>({
   dialect: new PostgresDialect({
     pool: new Pool({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: DATABASE_URL,
     }),
   }),
 });
